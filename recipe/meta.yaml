@@ -1,5 +1,5 @@
 {% set name = "sqlitedict" %}
-{% set version = "2.0.0" %}
+{% set version = "2.1.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,33 +7,40 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 23a370416f4e1e962daa293382f3a8dbc4127e6a0abc06a5d4e58e6902f05d17
+  sha256: 03d9cfb96d602996f1d4c2db2856f1224b96a9c431bdd16e78032a72940f9e8c
 
 build:
-  noarch: python
   number: 0
   script: {{ PYTHON }} -m pip install . -vv
 
-
 requirements:
   host:
-    - python >=3.6
+    - python
     - pip
   run:
-    - python >=3.6
+    - python
 
 test:
   imports:
     - sqlitedict
+  requires:
+    - pip
+  commands:
+    - pip check
 
 about:
-  home: https://github.com/RaRe-Technologies/sqlitedict
+  home: https://github.com/piskvorky/sqlitedict
+  summary: Persistent dict in Python, backed up by sqlite3 and pickle, multithread-safe.
+  description: |
+    A lightweight wrapper around Python's sqlite3 database with a simple,
+    Pythonic dict-like interface and support for multi-thread access. Keys
+    are arbitrary strings, values are arbitrary pickle-able objects, and the
+    data is persisted on disk in a single SQLite file.
   license: Apache-2.0
   license_family: APACHE
   license_file: LICENSE.md
-  summary: Persistent dict in Python, backed up by sqlite3 and pickle, multithread-safe.
-  doc_url: https://github.com/RaRe-Technologies/sqlitedict
-  dev_url: https://github.com/RaRe-Technologies/sqlitedict
+  doc_url: https://github.com/piskvorky/sqlitedict
+  dev_url: https://github.com/piskvorky/sqlitedict
 
 extra:
   recipe-maintainers:
